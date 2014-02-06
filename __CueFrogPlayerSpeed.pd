@@ -1,0 +1,112 @@
+#N canvas 3 54 1280 710 10;
+#X floatatom 203 102 5 0.15749 6.16884 0 Speed __#0SpeedIn __#0SpeedOut
+;
+#X obj 103 136 hsl 137 8 -64 63 0 0 __\$0FaderOut __\$0FaderIn empty
+10 -8 0 10 -203904 -258113 -1 6854 0;
+#X obj 100 100 bng 14 250 50 0 __\$0SpeedReset __\$0Xin 1 4 8 0 10
+-13381 -1 -262144;
+#X msg 33 192 1;
+#X obj 33 163 loadbang;
+#X obj 181 366 change;
+#X obj 268 189 r __\$0FaderOut;
+#X obj 268 373 s __\$0FaderIn;
+#X obj 104 -6 inlet;
+#X obj 181 421 outlet;
+#X floatatom 203 119 5 -64 63 0 Quarter_tones __#0PitchIn __#0PitchOut
+;
+#X obj 268 301 r __\$0SpeedOut;
+#X obj 33 213 s __\$0SpeedIn;
+#X obj 268 260 s __\$0PitchIn;
+#X obj 383 260 s __\$0SpeedIn;
+#X obj 328 811 s cfPlayer\$1SetSpeed;
+#X obj 328 836 r cfPlayer\$1Speed;
+#X obj 328 757 - 64;
+#X obj 328 779 expr pow(1.029302237 \, $f1);
+#X obj 328 863 expr log($f1)/log(1.029302237);
+#X obj 444 925 int;
+#X obj 370 899 + 64.4999;
+#X obj 328 811 s cfPlayer\$1SetSpeed;
+#X obj 328 836 r cfPlayer\$1Speed;
+#X obj 328 757 - 64;
+#X obj 328 779 expr pow(1.029302237 \, $f1);
+#X obj 328 863 expr log($f1)/log(1.029302237);
+#X obj 444 925 int;
+#X obj 370 899 + 64.4999;
+#X obj 328 811 s cfPlayer\$1SetSpeed;
+#X obj 328 836 r cfPlayer\$1Speed;
+#X obj 328 757 - 64;
+#X obj 328 779 expr pow(1.029302237 \, $f1);
+#X obj 328 863 expr log($f1)/log(1.029302237);
+#X obj 444 925 int;
+#X obj 370 899 + 64.4999;
+#X obj 329 814 s cfPlayer\$1SetSpeed;
+#X obj 329 839 r cfPlayer\$1Speed;
+#X obj 329 760 - 64;
+#X obj 329 782 expr pow(1.029302237 \, $f1);
+#X obj 329 866 expr log($f1)/log(1.029302237);
+#X obj 445 928 int;
+#X obj 371 902 + 64.4999;
+#X obj 134 163 r __\$0SpeedReset;
+#X obj 268 81 r __\$0PitchOut;
+#X obj 268 152 s __\$0FaderIn;
+#X obj 383 373 s __\$0PitchIn;
+#X obj 104 28 s __\$0SpeedIn;
+#X msg 268 131 set \$1;
+#X obj 383 152 s __\$0SpeedIn;
+#X msg 268 239 set \$1;
+#X obj 383 110 expr pow(1.029302237 \, $f1);
+#X obj 383 218 expr pow(1.029302237 \, $f1);
+#X obj 268 322 expr log($f1)/log(1.029302237);
+#X text 231 23 Quarter tones seems a weird choice \, but this gives
++/-2.5 octaves from an 8bit MIDI controller with reasonable resolution
+for "tuning".;
+#X msg 268 343 set \$1;
+#X msg 383 239 \$1;
+#X msg 383 132 \$1;
+#X text 491 138 Using a "set \$1" message rather than sending the new
+value directly updates the downstream widget without causing it to
+output the new value (a "cold" update). This avoids infinite loops
+where all related widgets constantly update each other.;
+#X text 420 77 The magic number here is 2^(1/24) \, the 24th root of
+two or the frequency ratio for quarter tones.;
+#X connect 3 0 12 0;
+#X connect 4 0 3 0;
+#X connect 5 0 9 0;
+#X connect 6 0 50 0;
+#X connect 6 0 52 0;
+#X connect 8 0 47 0;
+#X connect 11 0 5 0;
+#X connect 11 0 53 0;
+#X connect 16 0 19 0;
+#X connect 17 0 18 0;
+#X connect 18 0 15 0;
+#X connect 19 0 21 0;
+#X connect 21 0 20 0;
+#X connect 23 0 26 0;
+#X connect 24 0 25 0;
+#X connect 25 0 22 0;
+#X connect 26 0 28 0;
+#X connect 28 0 27 0;
+#X connect 30 0 33 0;
+#X connect 31 0 32 0;
+#X connect 32 0 29 0;
+#X connect 33 0 35 0;
+#X connect 35 0 34 0;
+#X connect 37 0 40 0;
+#X connect 38 0 39 0;
+#X connect 39 0 36 0;
+#X connect 40 0 42 0;
+#X connect 42 0 41 0;
+#X connect 43 0 3 0;
+#X connect 44 0 48 0;
+#X connect 44 0 51 0;
+#X connect 48 0 45 0;
+#X connect 50 0 13 0;
+#X connect 51 0 57 0;
+#X connect 52 0 56 0;
+#X connect 53 0 55 0;
+#X connect 55 0 7 0;
+#X connect 55 0 46 0;
+#X connect 56 0 14 0;
+#X connect 57 0 49 0;
+#X coords 0 -1 1 1 142 44 2 100 100;

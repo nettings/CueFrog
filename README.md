@@ -1,7 +1,6 @@
 CueFrog
 =======
 
-CueFrog is a simple, idiosyncratic theatre cue player toolkit written in Pd.
 CueFrog is a theatre cue player framework for Pd, based on August Black's
 readanysf~ external (which it requires). You can get readanysf~ from
 http://aug.ment.org/readanysf/

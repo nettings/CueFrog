@@ -1,0 +1,18 @@
+#N canvas 26 221 654 486 10;
+#X obj 115 130 bng 30 250 50 0 empty empty <<-Cut -11 15 0 10 -159808
+-1 -1;
+#X obj 100 100 bng 30 250 50 0 empty empty Cut->> 6 15 0 10 -159808
+-1 -1;
+#X obj 165 23 loadbang;
+#X obj 165 53 print New CueFrogCutButtons between players \$1 and \$2.
+;
+#X obj 127 174 s cfPlayer\$1SetPlay;
+#X obj 115 202 s cfPlayer\$2SetPause;
+#X obj 60 230 s cfPlayer\$2SetPlay;
+#X obj 31 262 s cfPlayer\$1SetPause;
+#X connect 0 0 4 0;
+#X connect 0 0 5 0;
+#X connect 1 0 6 0;
+#X connect 1 0 7 0;
+#X connect 2 0 3 0;
+#X coords 0 -1 1 1 45 60 2 100 100;

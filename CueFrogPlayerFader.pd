@@ -1,0 +1,154 @@
+#N canvas 217 75 1060 690 10;
+#X obj 100 102 vsl 15 300 0 100 0 0 __\$0FaderOut __\$0FaderIn empty
+0 -9 0 10 -203904 -1 -1 0 0;
+#X obj 135 405 tgl 15 0 __\$0OnOut __\$0OnIn On 2 7 0 10 -4034 -13381
+-1 1 1;
+#X obj 268 424 outlet;
+#X obj 321 424 outlet;
+#X obj 449 382 sig~;
+#X obj 450 403 lop~ 20;
+#X obj 449 424 outlet~;
+#X obj -80 137 moses 4;
+#X obj -32 161 moses 16;
+#X obj 9 188 moses 52;
+#X obj -80 183 - 200;
+#X obj -80 164 * 35;
+#X obj -32 245 - 60;
+#X obj -32 185 - 4;
+#X obj -32 225 * 20;
+#X obj -32 205 / 12;
+#X obj 9 213 - 16;
+#X obj 9 233 / 12;
+#X obj 9 253 * 10;
+#X obj 9 273 - 40;
+#X obj 56 217 - 52;
+#X obj 56 237 / 12;
+#X obj 56 257 * 5;
+#X obj 56 277 - 10;
+#X floatatom 101 406 5 -200 10 0 - __#0NumberIn __#0NumberOut;
+#X text 114 98 +10;
+#X text 114 133 +5;
+#X text 114 204 -5;
+#X text 114 239 -10;
+#X text 114 275 -20;
+#X text 114 311 -30;
+#X text 114 347 -40;
+#X text 114 365 -50;
+#X text 114 383 -60;
+#X text 114 395 -oo;
+#X obj -246 134 moses -60;
+#X obj -260 164 + 200;
+#X obj -260 185 / 35;
+#X obj -208 164 moses -40;
+#X obj -219 194 + 60;
+#X obj -219 214 / 20;
+#X obj -219 234 * 12;
+#X obj -219 254 + 4;
+#X obj -166 197 moses -10;
+#X obj -173 227 + 40;
+#X obj -173 248 / 10;
+#X obj -173 268 * 12;
+#X obj -173 288 + 16;
+#X obj -131 232 + 10;
+#X obj -131 252 / 5;
+#X obj -131 273 * 12;
+#X obj -131 293 + 52;
+#X obj 449 281 expr pow(10 \, $f1/20);
+#X obj 449 358 *;
+#X text 188 46 From MusicDSP archive: Millimeter to DB (faders...)
+References : Posted by James McCartney Notes : These two functions
+reproduce a traditional professional mixer fader taper. MMtoDB converts
+millimeters of fader travel from the bottom of the fader for a 100
+millimeter fader into decibels. DBtoMM is the inverse. The taper is
+as follows from the top: The top of the fader is +10 dB 100 mm to 52
+mm : -5 dB per 12 mm (-10dB) 52 mm to 16 mm : -10 dB per 12 mm (-40dB)
+16 mm to 4 mm : -20 dB per 12 mm (-60dB) 4 mm to 0 mm : fade to zero.
+(in these functions I go to -200dB which is effectively zero for up
+to 32 bit audio.);
+#X obj 214 -51 loadbang;
+#X msg 214 -25 1;
+#X text 119 168 0dB;
+#X obj -71 100 r __\$0FaderOut;
+#X obj -217 357 s __\$0FaderIn;
+#X obj -229 72 r __\$0NumberOut;
+#X obj -49 356 s __\$0NumberIn;
+#X obj 449 257 r __\$0NumberOut;
+#X obj 214 424 outlet;
+#X obj 268 355 r __\$0FaderOut;
+#X obj 214 326 r __\$0NumberOut;
+#X obj 321 383 r __\$0OnOut;
+#X obj 477 301 r __\$0OnOut;
+#X obj 92 70 s __\$0OnIn;
+#X obj -232 101 change;
+#X obj 456 329 t b f;
+#X text 487 354 Note to self: "trigger" is my friend to avoid weird
+malfunctions depending on the order of connections.;
+#X obj -246 1 inlet;
+#X text -258 -17 Set level in dB.;
+#X obj -80 1 inlet;
+#X text -133 -17 Set fader position in mm.;
+#X obj 92 1 inlet;
+#X text 53 -17 Set On button state.;
+#X text 420 445 This is the level as gain coefficient \, converted
+to a signal so that it can be low-pass filtered to ake it click-free.
+;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 7 0 11 0;
+#X connect 7 1 8 0;
+#X connect 8 0 13 0;
+#X connect 8 1 9 0;
+#X connect 9 0 16 0;
+#X connect 9 1 20 0;
+#X connect 10 0 61 0;
+#X connect 11 0 10 0;
+#X connect 12 0 61 0;
+#X connect 13 0 15 0;
+#X connect 14 0 12 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 19 0 61 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 23 0 61 0;
+#X connect 35 0 36 0;
+#X connect 35 1 38 0;
+#X connect 36 0 37 0;
+#X connect 37 0 59 0;
+#X connect 38 0 39 0;
+#X connect 38 1 43 0;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 41 0 42 0;
+#X connect 42 0 59 0;
+#X connect 43 0 44 0;
+#X connect 43 1 48 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 46 0 47 0;
+#X connect 47 0 59 0;
+#X connect 48 0 49 0;
+#X connect 49 0 50 0;
+#X connect 50 0 51 0;
+#X connect 51 0 59 0;
+#X connect 52 0 53 0;
+#X connect 53 0 4 0;
+#X connect 55 0 56 0;
+#X connect 56 0 68 0;
+#X connect 58 0 7 0;
+#X connect 60 0 69 0;
+#X connect 62 0 52 0;
+#X connect 64 0 2 0;
+#X connect 65 0 63 0;
+#X connect 66 0 3 0;
+#X connect 67 0 70 0;
+#X connect 69 0 35 0;
+#X connect 70 0 53 0;
+#X connect 70 1 53 1;
+#X connect 72 0 35 0;
+#X connect 74 0 7 0;
+#X connect 76 0 68 0;
+#X coords 0 -1 1 1 50 320 2 100 100;

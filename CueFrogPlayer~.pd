@@ -1,0 +1,230 @@
+#N canvas 0 54 1280 710 10;
+#X obj 101 101 cnv 50 145 536 empty empty empty 20 12 0 14 -253696
+-66577 0;
+#X obj 287 893 env~;
+#X obj 332 893 env~;
+#X obj 287 913 - 100;
+#X obj 332 913 - 100;
+#X obj 184 762 *~;
+#X obj 241 762 *~;
+#X obj 259 560 readanysf~ 2;
+#X obj 44 18 openpanel;
+#X obj 103 103 bng 15 250 50 0 empty empty Load_file 17 7 0 10 -258113
+-4032 -1;
+#X msg 289 252 play;
+#X msg 304 392 pause;
+#X obj 367 593 route ready samplerate length cache float bang;
+#X msg 269 154 speed \$1;
+#X obj 184 980 outlet~;
+#X obj 242 980 outlet~;
+#X obj 148 299 bng 30 250 50 0 empty empty Stop 3 15 0 10 -258113 -1
+-1;
+#X obj 110 336 bng 30 250 50 0 empty empty Pause 1 15 0 10 -260097
+-1 -1;
+#X obj 110 299 bng 30 250 50 0 empty empty Play 3 15 0 10 -4034 -1
+-1;
+#X obj 386 508 loadbang;
+#X obj 148 336 tgl 30 0 empty empty Loop 4 14 0 10 -203904 -1 -1 0
+1;
+#X msg 311 441 loop \$1;
+#X obj 136 599 tgl 15 0 empty empty Pre 0 7 0 8 -203904 -1 -1 0 1;
+#X obj 284 854 *~;
+#X obj 358 854 *~;
+#X obj 319 854 *~;
+#X obj 249 854 *~;
+#X obj 289 810 == 0;
+#X symbolatom 103 120 20 0 0 0 - - -;
+#X msg 259 105 open \$1;
+#X obj 367 719 s cfPlayer\$1Ready;
+#X obj 420 699 s cfPlayer\$1Srate;
+#X obj 473 678 s cfPlayer\$1Len;
+#X obj 526 657 s cfPlayer\$1CacheFill;
+#X obj 632 614 s cfPlayer\$1Done;
+#X obj -54 82 r cfPlayer\$1SetFile;
+#X msg 278 203 time_seek \$1;
+#X obj 579 635 s cfPlayer\$1SetPos;
+#X obj -205 203 r cfPlayer\$1SetFader;
+#X obj -53 386 r cfPlayer\$1SetLoop;
+#X obj -54 600 r cfPlayer\$1SetPre;
+#X obj 259 498 r cfPlayer\$1Cmds;
+#X obj -54 126 s cfPlayer\$1File;
+#X obj -53 407 s cfPlayer\$1Loop;
+#X obj -54 622 s cfPlayer\$1Pre;
+#X obj -204 224 s cfPlayer\$1Fader;
+#X obj -53 224 s cfPlayer\$1On;
+#X obj -53 203 r cfPlayer\$1SetOn;
+#X text 135 417 +2;
+#X text 135 393 +6;
+#X text 133 369 +12;
+#X text 135 466 -2;
+#X text 135 490 -6;
+#X text 131 514 -12;
+#X text 130 537 -20;
+#X text 130 562 -30;
+#X text 130 586 -50;
+#X msg 297 302 stop;
+#X msg 311 323 0;
+#X obj 311 343 s cfPlayer\$1SetPos;
+#X obj -54 325 r cfPlayer\$1SetStop;
+#X obj -204 325 r cfPlayer\$1SetPlay;
+#X obj -204 386 r cfPlayer\$1SetPause;
+#X obj -475 6 loadbang;
+#X obj -356 203 r cfPlayer\$1SetLevel;
+#X obj -356 224 s cfPlayer\$1Level;
+#X obj -475 27 \$1;
+#X obj 259 471 s cfPlayer\$1Cmds;
+#X obj -204 346 s cfPlayer\$1Play;
+#X obj -54 346 s cfPlayer\$1Stop;
+#X obj -204 407 s cfPlayer\$1Pause;
+#X obj 269 134 r cfPlayer\$1Speed;
+#X obj 278 182 r cfPlayer\$1Pos;
+#X obj 275 525 print \$1;
+#X obj 259 85 r cfPlayer\$1File;
+#X obj 332 937 s cfPlayer\$1MeterR;
+#X obj 287 960 s cfPlayer\$1MeterL;
+#X obj -204 441 r cfPlayer\$1MeterL;
+#X obj -54 441 r cfPlayer\$1MeterR;
+#X obj -54 152 r cfPlayer\$1SetSpeed;
+#X obj -54 174 s cfPlayer\$1Speed;
+#X obj 162 377 vu 10 240 empty empty -1 -8 0 10 -33289 -1 0 0;
+#X obj 116 377 vu 10 240 empty empty -1 -8 0 10 -33289 -1 0 0;
+#X text 132 442 0dB;
+#X obj -387 55 print New CueFrogPlayer~ instance;
+#X obj 188 299 CueFrogPlayerFader \$1;
+#X obj -53 250 r cfPlayer\$1SetPos;
+#X obj -53 275 s cfPlayer\$1Pos;
+#X text 130 610 -oo;
+#X obj 374 754 r cfPlayer\$1Pre;
+#X obj 297 282 r cfPlayer\$1Stop;
+#X obj 311 420 r cfPlayer\$1Loop;
+#X obj 304 372 r cfPlayer\$1Pause;
+#X obj 289 232 r cfPlayer\$1Play;
+#X obj 557 781 s cfPlayer\$1Stop;
+#X obj 557 746 r cfPlayer\$1Done;
+#X obj -244 82 r cfPlayer\$1SetShortname;
+#X obj 44 42 s cfPlayer\$1SetFile;
+#X obj 393 553 s cfPlayer\$1Tick;
+#X text 417 110 CueFrog tries to emulate some of the encapsulation
+of object-oriented programming. That requires some care \, because
+all send and receive ports are global in Pd.;
+#X text 416 155 All public ports include the unique ID \$1 specified
+at creation time. Only ports with "Set" in them are meant to be modified
+from the outside \; those without are read-only \, meant to be monitored
+by anyone interested in the current state.;
+#X text 356 322 Stop resets the playhead to zero.;
+#X text 403 810 At the end of the file \, go into stop state. Since
+this includes rewinding \, it can be a bit confusing when dragging
+the playhead widget all the way to the end while playing. Remove this
+connection to change the default behaviour.;
+#X text 384 465 It may not be wise to export this port. Maybe it's
+useful for quick hacks \, but it should not be used \, I think.;
+#X text -477 109 The shortname is a convenience hack to produce meaningful
+information in the player widget. It overwrites the file name field
+without affecting the actual file. Used by the CueFrogPlaylist.pd playlist
+manager.;
+#X text -367 504 Sorry about this mess of wires. The idea is to make
+the public ports easily discoverable without forcing you to open every
+single widget's properties dialog.;
+#X text 416 226 Some abstractions use private ports as well. They always
+start with a double underscore and are made unique by using the system-level
+ID \$0. Private ports are not meant to be tinkered with - if you need
+access from the outside \, create a proper pair of public ports. Open
+the CueFrogSpeed.pd widget to see private ports in use.;
+#X obj 46 687 s~ cfPlayer\$1GainCoeff;
+#X obj 46 710 r~ cfPlayer\$1GainCoeff;
+#X obj 103 210 __CueFrogPlayerSpeed;
+#X obj 103 264 __CueFrogPlayerSeek \$1;
+#X obj 374 778 float 0;
+#X obj 303 754 loadbang;
+#X obj 103 137 __CueFrogPlayerStatus \$1;
+#X symbolatom 208 103 5 0 0 0 - __#0ID x;
+#X msg -475 55 set ID\$1;
+#X obj -475 77 s __\$0ID;
+#X msg 387 530 tick 100;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 76 0;
+#X connect 4 0 75 0;
+#X connect 5 0 14 0;
+#X connect 5 0 26 1;
+#X connect 6 0 15 0;
+#X connect 6 0 23 1;
+#X connect 7 0 5 1;
+#X connect 7 0 25 1;
+#X connect 7 1 6 1;
+#X connect 7 1 24 1;
+#X connect 7 2 12 0;
+#X connect 8 0 97 0;
+#X connect 9 0 8 0;
+#X connect 10 0 67 0;
+#X connect 11 0 67 0;
+#X connect 12 0 30 0;
+#X connect 12 1 31 0;
+#X connect 12 2 32 0;
+#X connect 12 3 33 0;
+#X connect 12 4 37 0;
+#X connect 12 5 34 0;
+#X connect 13 0 67 0;
+#X connect 16 0 69 0;
+#X connect 17 0 70 0;
+#X connect 18 0 68 0;
+#X connect 19 0 117 0;
+#X connect 20 0 43 0;
+#X connect 21 0 67 0;
+#X connect 22 0 44 0;
+#X connect 23 0 2 0;
+#X connect 24 0 2 0;
+#X connect 25 0 1 0;
+#X connect 26 0 1 0;
+#X connect 27 0 26 0;
+#X connect 27 0 23 0;
+#X connect 29 0 67 0;
+#X connect 35 0 28 0;
+#X connect 35 0 42 0;
+#X connect 36 0 67 0;
+#X connect 38 0 85 1;
+#X connect 39 0 20 0;
+#X connect 40 0 22 0;
+#X connect 41 0 7 0;
+#X connect 41 0 73 0;
+#X connect 47 0 85 2;
+#X connect 57 0 67 0;
+#X connect 57 0 58 0;
+#X connect 58 0 59 0;
+#X connect 60 0 16 0;
+#X connect 61 0 18 0;
+#X connect 62 0 17 0;
+#X connect 63 0 66 0;
+#X connect 64 0 85 0;
+#X connect 66 0 84 0;
+#X connect 66 0 115 0;
+#X connect 71 0 13 0;
+#X connect 72 0 36 0;
+#X connect 74 0 29 0;
+#X connect 77 0 82 0;
+#X connect 78 0 81 0;
+#X connect 79 0 109 0;
+#X connect 85 0 65 0;
+#X connect 85 1 45 0;
+#X connect 85 2 46 0;
+#X connect 85 3 107 0;
+#X connect 86 0 110 0;
+#X connect 89 0 111 0;
+#X connect 90 0 57 0;
+#X connect 91 0 21 0;
+#X connect 92 0 11 0;
+#X connect 93 0 10 0;
+#X connect 95 0 94 0;
+#X connect 96 0 28 0;
+#X connect 108 0 5 0;
+#X connect 108 0 6 0;
+#X connect 109 0 80 0;
+#X connect 110 0 87 0;
+#X connect 111 0 27 0;
+#X connect 111 0 25 0;
+#X connect 111 0 24 0;
+#X connect 112 0 111 0;
+#X connect 115 0 116 0;
+#X connect 117 0 7 0;
+#X connect 117 0 98 0;
+#X coords 0 0 1 1 147 540 2 100 100;

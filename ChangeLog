@@ -1,0 +1,11 @@
+0.0.5	replace informational number boxes with symbol boxes.
+
+0.0.4   doc updates, new 6-channel CueFrogPlayer6~. Numerous bugfixes,
+	cleaner initialisation. Improved MIDI controller.
+0.0.3	
+	fix on button in mixer strip
+	make CueFrogEightDecks.pd example really contain eight decks :-D
+	fix CueFrogCutButtons.pd to use proper setters
+	documentation updates
+0.0.2	June 20 2012
+	initial public release

@@ -1,0 +1,105 @@
+#N canvas 0 54 1280 710 10;
+#X obj -54 -124 CueFrogLogo;
+#X text 34 -125 Hi! Welcome to CueFrog \, a framework to create theatre
+cue players in Pd \, based on August Black's readanysf~ external.;
+#X text 470 -32 |CueFrogPlayer~ 42|;
+#X text 785 194 The "bangs" for Play/Pause/Stop may be replaced by
+a proper state machine in the future (there is already one in the MIDI
+controller). The current design is how readanysf~ does it.;
+#X text 785 159 While playing \, you can "scratch" the playhead around
+with the slider or the numbox. [0] returns to zero.;
+#X text 785 380 The fader should feel familiar to users of analog mixing
+desks. The taper makes the code a bit convoluted \, but it's worth
+it. Code stolen from James McCartney (oh sweet irony) by way of the
+musicdsp archive :-D;
+#X text 784 449 Finally \, there are two toggles to switch to pre-fader
+metering \, and to turn off the channel (click-free).;
+#X obj 193 250 CueFrogController 43;
+#X msg -54 185 1 81 65 73 0 1 33;
+#X msg -54 208 1 82 66 74 0 2 34;
+#X text 189 226 |CueFrogController 43|;
+#X text 32 226 |CueFrogController 42|;
+#X text 33 150 Using the unique IDs \, it's easy to associate a MIDI
+controller with your CueFrogPlayer~ decks:;
+#X obj 346 504 CueFrogCutButtons 42 43;
+#X obj -54 117 loadbang;
+#X obj 35 504 CueFrogPlaylist 42;
+#X text 218 565 |CueFrogCutButtons 42 43|;
+#X text 107 201 of a Behringer BCF2000 (factory preset 1);
+#X text 86 188 <- configuration for the first two channels;
+#X text 33 417 Likewise \, you can create other controllers \, such
+as a playlist manager \, a set of buttons to cut between decks \, or
+a "STOP ALL" button:;
+#X obj 398 504 CueFrogStopAllButton 42 43;
+#X text 393 564 |CueFrogStopAllButton 42 43|;
+#X obj 193 504 CueFrogPlaylist 43;
+#X msg -54 465 ./playlist1.txt;
+#X text 39 484 |CueFrogPlaylist 42|;
+#X text 188 484 |CueFrogPlaylist 43|;
+#X msg 136 463 ./playlist2.txt;
+#X obj -54 437 loadbang;
+#X text 33 -10 This program is free software: you can redistribute
+it and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation \, either version 3 of
+the License \, or (at your option) any later version.;
+#X text 34 -88 CueFrog is being written by Jörn Nettingsmeier <nettings@stackingdwarves.net>.
+I'm an inexperienced Pd programmer (in fact it's my first project)
+\, so be sure to review it carefully before you use it for anything
+important. I would like to hear your suggestions.;
+#X obj 465 -4 CueFrogPlayer~ 42;
+#X text 624 -31 |CueFrogPlayer6~ 43|;
+#X obj 622 -4 CueFrogPlayer6~ 43;
+#X obj 594 556 dac~ 1 2 3 4 5 6;
+#X text 341 274 <- Fader :);
+#X text 341 292 <- top button;
+#X text 341 311 <- bottom button;
+#X text 341 330 <- n/a;
+#X text 341 349 <- rotary encoder;
+#X text 341 369 <- encoder press;
+#X obj 36 250 CueFrogController 42;
+#X text 785 259 Important note: If the play and pause buttons are flashing
+like crazy and your motorfaders are rattling \, Pd has auto-connected
+to all your MIDI ports and found a MIDI-Thru \, which creates a parameter
+feedback loop. Make sure you disconnect all Pd MIDI connections to
+MIDI Thru ports. This problem is known to happen on Linux systems using
+ALSA MIDI. You can prevent Pd from auto-connecting in this way by specifcying
+"-mididev 1 \, 1" on the command line.;
+#X text -49 -70 v0.0.5;
+#X text 463 -124 The player comes in two flavours \, a 2- and a 6-channel
+one.;
+#X text 463 -105 To begin \, hit the "Load_file" button and select
+a suitable file in a format that readanysf~ can understand (which depends
+on how it was compiled. This is Pd \, so any funky characters (specifically
+\, whitespace) in filenames are a _very_ \, _very_ bad idea.;
+#X text 785 10 This line will display the full path of the current
+file \, or \, if used with a playlist \, an optional short name.;
+#X text 785 51 This section shows read-only status information coming
+from readanysf~.;
+#X text 783 489 There doesn't seem to be a sane way to parameterize
+the number of channels and outlets (I don't consider dynamic patching
+sane). So for now there's a hardcoded variant with 6 channels for 5.1
+playback. Ugly \, duplicated code. Suggestions welcome.;
+#X text 785 102 You can alter the playback speed by setting a speed
+coefficient \, an offset in quarter tones (from -64 to +63 \, to map
+nicely to a 7bit MIDI controller) \, or with the slider. The [1] button
+resets it to normal.;
+#X text 33 67 CueFrog is a group of abstractions. They are written
+so that you can safely use as many as your machine can handle in parallel.
+Abstractions that need to talk to each other do that by way of a unique
+numerical ID chosen by the user at creation time.;
+#X connect 8 0 40 0;
+#X connect 9 0 7 0;
+#X connect 14 0 8 0;
+#X connect 14 0 9 0;
+#X connect 23 0 15 0;
+#X connect 26 0 22 0;
+#X connect 27 0 23 0;
+#X connect 27 0 26 0;
+#X connect 30 0 33 0;
+#X connect 30 1 33 1;
+#X connect 32 0 33 0;
+#X connect 32 1 33 1;
+#X connect 32 2 33 2;
+#X connect 32 3 33 3;
+#X connect 32 4 33 4;
+#X connect 32 5 33 5;

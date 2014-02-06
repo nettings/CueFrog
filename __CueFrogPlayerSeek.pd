@@ -1,0 +1,53 @@
+#N canvas 411 54 866 707 10;
+#X floatatom 203 102 5 0 0 0 PH_pos_[s] __#0NumberIn __#0NumberOut
+;
+#X obj 103 120 hsl 137 8 0 1 0 0 __\$0FaderOut __\$0FaderIn empty 10
+-8 0 10 -203904 -258113 -1 214 0;
+#X obj 98 9 /;
+#X obj 100 100 bng 15 250 50 0 __\$0RTZ empty 0 5 7 0 10 -258113 -1
+-1;
+#X obj 261 -14 >;
+#X obj 261 8 select 1;
+#X obj 344 -15 < 0;
+#X obj 344 7 select 1;
+#X text 254 -42 Ensure position is always between 0 and length of file.
+;
+#X obj 325 -74 r __\$0NumberOut;
+#X obj 202 71 s __\$0NumberIn;
+#X obj 98 71 s __\$0FaderIn;
+#X obj 136 -75 inlet;
+#X obj 208 232 outlet;
+#X obj 209 -74 r cfPlayer\$1Len;
+#X obj 261 31 f;
+#X msg 202 31 set \$1;
+#X msg 98 40 set \$1;
+#X obj 344 33 0;
+#X obj 98 145 r __\$0FaderOut;
+#X obj 210 145 r cfPlayer\$1Len;
+#X obj 158 186 *;
+#X obj 328 145 r __\$0NumberOut;
+#X obj 437 12 r __\$0RTZ;
+#X obj 437 37 0;
+#X connect 2 0 17 0;
+#X connect 4 0 5 0;
+#X connect 5 0 15 0;
+#X connect 6 0 7 0;
+#X connect 7 0 18 0;
+#X connect 9 0 4 0;
+#X connect 9 0 6 0;
+#X connect 12 0 2 0;
+#X connect 12 0 16 0;
+#X connect 14 0 2 1;
+#X connect 14 0 15 1;
+#X connect 15 0 4 1;
+#X connect 15 0 10 0;
+#X connect 16 0 10 0;
+#X connect 17 0 11 0;
+#X connect 18 0 10 0;
+#X connect 19 0 21 0;
+#X connect 20 0 21 1;
+#X connect 21 0 13 0;
+#X connect 22 0 13 0;
+#X connect 23 0 24 0;
+#X connect 24 0 10 0;
+#X coords 0 -1 1 1 142 28 2 100 100;

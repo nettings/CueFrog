@@ -1,0 +1,9 @@
+#N canvas 391 264 450 300 10;
+#X obj 100 100 bng 40 1e+07 10 0 __cfLogo\$0EyeOut __cfLogo\$0EyeIn
+o 22 28 0 20 -4034 -204786 -1;
+#X obj 98 25 loadbang;
+#X obj 140 100 bng 40 1e+07 10 0 __cfLogo\$0EyeOut __cfLogo\$0EyeIn
+o 9 28 0 20 -4034 -204786 -1;
+#X connect 1 0 0 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 80 40 2 100 100;
